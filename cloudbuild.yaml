@@ -11,4 +11,4 @@ steps:
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
     entrypoint: "gcloud"
     timeout: 240s
-    args: ["compute", "instances", "create-with-container", "my-vm-name", "--container-image", "gcr.io/$PROJECT_ID/ekspedisi-cloudrun/$COMMIT_SHA"]
+    args: ["compute", "instances", "create-with-container", "--container-image", "gcr.io/$PROJECT_ID/ekspedisi-cloudrun/$COMMIT_SHA"]
