@@ -1,22 +1,14 @@
 steps:
-  # Build the container image
+  # Docker Build
   - name: "gcr.io/cloud-builders/docker"
-    args: ["build", "-t", "gcr.io/$PROJECT_ID/be-ekspedisi:$COMMIT_SHA", "."]
-  # Push the container image to Container Registry
-  - name: "gcr.io/cloud-builders/docker"
-    args: ["push", "gcr.io/$PROJECT_ID/be-ekspedisi:$COMMIT_SHA"]
+    args: ["build", "-t", "gcr.io/$PROJECT_ID/ekspedisi-cloudrun/$COMMIT_SHA", "."]
 
-  # Deploy container image to Cloud Run
+  # Docker Push
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "gcr.io/$PROJECT_ID/ekspedisi-cloudrun/$COMMIT_SHA"]
+
+  # Entrypoint, timeout and environment variables
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
-    entrypoint: gcloud
-    args:
-      - "run"
-      - "deploy"
-      - "be-ekspedisi"
-      - "--image"
-      - "gcr.io/$PROJECT_ID/be-ekspedisi:$COMMIT_SHA"
-      - "--allow-unauthenticated"
-      - "--region"
-      - "asia-southeast1"
-images:
-  - "gcr.io/$PROJECT_ID/be-ekspedisi:$COMMIT_SHA"
+    entrypoint: "gcloud"
+    timeout: 240s
+    args: ["compute", "instances", "create-with-container", "my-vm-name", "--container-image", "gcr.io/$PROJECT_ID/ekspedisi-cloudrun/$COMMIT_SHA"]
