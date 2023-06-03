@@ -18,5 +18,6 @@ steps:
       - "--allow-unauthenticated"
       - "--region"
       - "asia-southeast1"
+
 images:
   - "gcr.io/$PROJECT_ID/ekspedisi-cloudrun:$COMMIT_SHA"
