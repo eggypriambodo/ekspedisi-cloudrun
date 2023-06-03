@@ -90,6 +90,7 @@ app.get("/protected", authenticateToken, (req, res) => {
 });
 
 // Jalankan server
-app.listen(8080, () => {
-  console.log("Server started on port 8080");
+const port = 8080;
+app.listen(port, () => {
+  console.log("Hello world listening on port", port);
 });
