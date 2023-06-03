@@ -38,7 +38,7 @@ steps:
       - 'deploy'
       - 'ekspedisi-cloudrun'
       - '--image'
-      - 'gcr.io/$PROJECT_ID/nama_image'
+      - 'gcr.io/$PROJECT_ID/ekspedisi-cloudrun'
       - '--region'
       - 'us-central1'
       - '--platform'
